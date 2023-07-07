@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 const Title = ({title}) => <h1> {title} </h1>
 const Statistics = (props) => {
+  if (props.all === 0) return <div><h2>No feedback given</h2></div>
   return (
     <div>
       good {props.good}<br/>
