@@ -27,13 +27,17 @@ const Content = ({contents}) => {
     )
 }
 
-// const Total = (props) => {
-//   return (
-//     <p>
-//         Number of exercises: {props.content[0].exercises + props.content[1].exercises + props.content[2].exercises}
-//     </p>
-//     )
-// }
+const Total = (props) => {
+  let sum = 0
+  props.content.forEach(e  => {
+    sum+= e.exercises;
+  });
+  return (
+    <p>
+        Number of exercises: {sum}
+    </p>
+    )
+}
 
 const App = () => {
   const course =  {
@@ -66,7 +70,7 @@ const App = () => {
     <div>
       <Header course={course.name}/> 
       <Content contents ={course.parts} />
-      {/* <Total content = {course.parts}/> */}
+      <Total content = {course.parts}/>
     </div>
   )
 }
