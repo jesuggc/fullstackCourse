@@ -5,17 +5,29 @@ const Button = ({handleRequest, text}) => <button onClick = {handleRequest}>{tex
   
 const App = (props) => {
   const [selected, setSelected] = useState(0)
+  const [vote, setVoted] = useState(new Uint8Array(6))
+
   // console.log(Math.round(Math.random()*(anecdotes.length-1)))
   const nextQuote = () => setSelected(Math.round(Math.random()*(anecdotes.length-1)))  
+  const voteQuote = () => { 
+    const copy = {...vote}
+    copy[selected]++
+    setVoted(copy)
+  } 
 
   return (
     <div>
       {props.anecdotes[selected]}
       <br/>
+      has {vote[selected]} votes
+      <br/>
+      <Button handleRequest={voteQuote} text = {"vote"} />
       <Button handleRequest={nextQuote} text = {"next anecdote"} />
     </div>
   )
 }
+
+
 
 const anecdotes = [
   'If it hurts, do it more often',
